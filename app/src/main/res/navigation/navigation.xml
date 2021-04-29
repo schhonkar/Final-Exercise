@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashFrgment">
+
+    <fragment
+        android:id="@+id/splashFrgment"
+        android:name="com.example.livenews.ui.fragments.SplashFrgment"
+        android:label="fragment_splash_frgment"
+        tools:layout="@layout/fragment_splash_frgment" >
+        <action
+            android:id="@+id/action_splashFrgment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/splashFrgment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.livenews.ui.fragments.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_savedItemFragment"
+            app:destination="@id/savedItemFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_searchItemFragment"
+            app:destination="@id/searchItemFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.example.livenews.ui.fragments.NewsDetailFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_news_detail" />
+    <fragment
+        android:id="@+id/savedItemFragment"
+        android:name="com.example.livenews.ui.fragments.SavedItemFragment"
+        android:label="fragment_saved_item"
+        tools:layout="@layout/fragment_saved_item" />
+    <fragment
+        android:id="@+id/searchItemFragment"
+        android:name="com.example.livenews.ui.fragments.SearchItemFragment"
+        android:label="fragment_search_item"
+        tools:layout="@layout/fragment_search_item" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.livenews.ui.fragments.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+</navigation>

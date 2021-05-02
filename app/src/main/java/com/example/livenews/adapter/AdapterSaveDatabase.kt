@@ -7,25 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.livenews.R
 import com.example.livenews.model.NewsData
 
-
-
-class AdapterHome(val context: Context,val data:ArrayList<NewsData>): RecyclerView.Adapter<AdapterHome.ViewHolder>() {
-
-
+class AdapterSaveDatabase(val context: Context, val data:ArrayList<NewsData>):RecyclerView.Adapter<AdapterSaveDatabase.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_itemview,parent,false)
-        return ViewHolder(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_itemview,parent,false)
+        return AdapterSaveDatabase.ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -46,16 +38,14 @@ class AdapterHome(val context: Context,val data:ArrayList<NewsData>): RecyclerVi
                 val bundle = Bundle().apply {
                     putSerializable("article",article)
                 }
-                findNavController().navigate(R.id.action_homePageFragment_to_newsDetailFragment,bundle)
+                findNavController().navigate(R.id.action_savedItemFragment_to_newsDetailFragment,bundle)
             }
         }
-
 
     }
 
     override fun getItemCount(): Int {
-
-        return data.size
+       return data.size
     }
 
     class ViewHolder(view: View):RecyclerView.ViewHolder(view){
@@ -64,6 +54,5 @@ class AdapterHome(val context: Context,val data:ArrayList<NewsData>): RecyclerVi
         val newsSource = view.findViewById<TextView>(R.id.rvNewsSource)
         val newsDate = view.findViewById<TextView>(R.id.rvNewsDate)
     }
-
 
 }

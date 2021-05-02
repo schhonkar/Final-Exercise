@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.CategoryFragment">
+    tools:context=".ui.fragments.CategoryFragment"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <Button
+        android:id="@+id/ctSport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sport"
+        android:background="@drawable/round_corner"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/ctBuisness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="business"
+        android:background="@drawable/round_corner"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/ctEntertainment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="entertainment"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:background="@drawable/round_corner"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/ctHealth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="health"
+        android:textAlignment="center"
+        android:background="@drawable/round_corner"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/ctScience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="science"
+        android:textAlignment="center"
+        android:background="@drawable/round_corner"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/ctTechnology"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="technology"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textSize="30sp"
+        android:background="@drawable/round_corner"
+        android:layout_marginBottom="10dp"/>
 
-</FrameLayout>
+
+</LinearLayout>

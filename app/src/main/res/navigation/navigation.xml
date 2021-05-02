@@ -33,25 +33,46 @@
         <action
             android:id="@+id/action_homePageFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="general" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
         android:name="com.example.livenews.ui.fragments.NewsDetailFragment"
         android:label="fragment_news_detail"
-        tools:layout="@layout/fragment_news_detail" />
+        tools:layout="@layout/fragment_news_detail" >
+        <argument
+            android:name="article"
+            app:argType="com.example.livenews.model.NewsData" />
+    </fragment>
     <fragment
         android:id="@+id/savedItemFragment"
         android:name="com.example.livenews.ui.fragments.SavedItemFragment"
         android:label="fragment_saved_item"
-        tools:layout="@layout/fragment_saved_item" />
+        tools:layout="@layout/fragment_saved_item" >
+        <action
+            android:id="@+id/action_savedItemFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchItemFragment"
         android:name="com.example.livenews.ui.fragments.SearchItemFragment"
         android:label="fragment_search_item"
-        tools:layout="@layout/fragment_search_item" />
+        tools:layout="@layout/fragment_search_item" >
+        <action
+            android:id="@+id/action_searchItemFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.example.livenews.ui.fragments.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+
+    </fragment>
 </navigation>

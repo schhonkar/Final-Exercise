@@ -9,11 +9,12 @@ import com.example.livenews.model.NewsData
 interface NewsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(newsData: NewsData):Long
+     fun insert(newsData: NewsData):Long
 
     @Query("SELECT * FROM NewsData")
-    suspend fun getAllData():LiveData<List<NewsData>>
+    fun getAllData(): LiveData<List<NewsData>>
 
     @Delete
-    suspend fun deleteNews(newsData: NewsData)
+    fun deleteNews(newsData: NewsData)
+
 }

@@ -20,6 +20,6 @@ interface RetrofitInterface {
         @Query("limit")
         limit:Int,
         @Query("keywords")
-        keywords:Int?
+        keywords: String?
     ):Call<ResponseDataModel>
 }

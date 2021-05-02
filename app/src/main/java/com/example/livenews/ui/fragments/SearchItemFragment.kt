@@ -1,34 +1,33 @@
 package com.example.livenews.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.livenews.R
+import com.example.livenews.adapter.AdapterHome
+import com.example.livenews.adapter.AdapterSearch
+import com.example.livenews.api.ApiClint
+import com.example.livenews.model.NewsData
+import com.example.livenews.model.ResponseDataModel
+import com.example.livenews.viewModel.NewsViewModel
+import kotlinx.android.synthetic.main.fragment_home_page.*
+import kotlinx.android.synthetic.main.fragment_search_item.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchItemFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchItemFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var adapter: AdapterSearch
+    lateinit var viewmodel:NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +37,32 @@ class SearchItemFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search_item, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchItemFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchItemFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        progressBar1.visibility = View.INVISIBLE
+        searchButton.setOnClickListener {
+            if (searchEditText.text.isNotEmpty()) {
+                val keyword = searchEditText.text.toString()
+                progressBar1.visibility = View.VISIBLE
+                setUi(keyword)
             }
+            else
+                searchEditText.error = "Please enter the keyword"
+
+        }
     }
+
+
+        fun setUi(keyword:String){
+            viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)
+            viewmodel.getNewsData(keyword,"general")
+            viewmodel.dataViewmodel.observe(viewLifecycleOwner, Observer { a ->
+                rvNewsList1.also {
+                    it.layoutManager = LinearLayoutManager(requireContext())
+                    it.setHasFixedSize(true)
+                    it.adapter = AdapterSearch(activity as AppCompatActivity,a.data)
+                }
+            })
+        }
 }

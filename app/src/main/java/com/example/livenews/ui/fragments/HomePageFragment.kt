@@ -1,5 +1,6 @@
 package com.example.livenews.ui.fragments
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,12 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.livenews.*
 import com.example.livenews.adapter.AdapterHome
 import com.example.livenews.api.ApiClint
 import com.example.livenews.model.NewsData
 import com.example.livenews.model.ResponseDataModel
+import com.example.livenews.viewModel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_home_page.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,10 +26,10 @@ import retrofit2.Response
 
 class HomePageFragment : Fragment() {
 
-    val accessKey = "1c5bd81035fb7fbbd80e0f084b929235"
-    val newsData = ArrayList<NewsData>()
     lateinit var adapter: AdapterHome
-
+    lateinit var viewmodel:NewsViewModel
+    val args :HomePageFragmentArgs by navArgs()
+    lateinit var category:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,33 +47,18 @@ class HomePageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         progressBar.visibility = View.VISIBLE
-        getNews()
-    }
-
-    private fun getNews() {
-        val news = ApiClint.getClint.getNewsData(accessKey,"general","in","en",100,null)
-
-        news.enqueue(object :Callback<ResponseDataModel>{
-            override fun onResponse(
-                call: Call<ResponseDataModel>,
-                response: Response<ResponseDataModel>
-            ) {
-                newsData.addAll(response.body()?.data?:ArrayList())
-                adapter = AdapterHome(activity!!,newsData)
-                rvNewsList.adapter = adapter
-                rvNewsList.layoutManager = LinearLayoutManager(activity)
-                progressBar.visibility = View.GONE
+        viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)
+        category = args.category
+        viewmodel.getNewsData(null,category)
+        viewmodel.dataViewmodel.observe(viewLifecycleOwner, Observer { a ->
+            rvNewsList.also {
+                it.layoutManager = LinearLayoutManager(requireContext())
+                it.setHasFixedSize(true)
+                it.adapter = AdapterHome(activity as AppCompatActivity,a.data)
             }
-
-            override fun onFailure(call: Call<ResponseDataModel>, t: Throwable) {
-                Log.e("Homepage","Some Error Occured")
-            }
-
         })
-
-
-
     }
+
 
 
 }

@@ -3,19 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashFrgment">
+    app:startDestination="@id/homePageFragment">
 
-    <fragment
-        android:id="@+id/splashFrgment"
-        android:name="com.example.livenews.ui.fragments.SplashFrgment"
-        android:label="fragment_splash_frgment"
-        tools:layout="@layout/fragment_splash_frgment" >
-        <action
-            android:id="@+id/action_splashFrgment_to_homePageFragment"
-            app:destination="@id/homePageFragment"
-            app:popUpTo="@id/splashFrgment"
-            app:popUpToInclusive="true"/>
-    </fragment>
     <fragment
         android:id="@+id/homePageFragment"
         android:name="com.example.livenews.ui.fragments.HomePageFragment"

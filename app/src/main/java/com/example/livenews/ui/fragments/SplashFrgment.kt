@@ -30,33 +30,33 @@ class SplashFrgment : Fragment() {
 //        super.onDetach()
 //        (activity as MainActivity).showBottomNavigation()
 //    }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash_frgment, container, false)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        navController = findNavController()
-        loadSplashScreen()
-    }
-
-    private fun loadSplashScreen(){
-        Handler().postDelayed({
-            // You can declare your desire activity here to open after finishing splash screen. Like MainActivity
-            goToHomeScreen()
-        }, TIME_OUT)
-    }
-
-    private fun goToHomeScreen(){
-        val action = SplashFrgmentDirections.actionSplashFrgmentToHomePageFragment()
-        navController.navigate(action)
-    }
+//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+//                              savedInstanceState: Bundle?): View? {
+//        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.fragment_splash_frgment, container, false)
+//    }
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        (activity as AppCompatActivity).supportActionBar?.hide()
+//    }
+//
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        navController = findNavController()
+//        loadSplashScreen()
+//    }
+//
+//    private fun loadSplashScreen(){
+//        Handler().postDelayed({
+//            // You can declare your desire activity here to open after finishing splash screen. Like MainActivity
+//            goToHomeScreen()
+//        }, TIME_OUT)
+//    }
+//
+//    private fun goToHomeScreen(){
+//        val action = SplashFrgmentDirections.actionSplashFrgmentToHomePageFragment()
+//        navController.navigate(action)
+//    }
 
 }

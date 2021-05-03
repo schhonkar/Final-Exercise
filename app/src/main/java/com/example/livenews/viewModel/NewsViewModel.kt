@@ -23,14 +23,13 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun insertNews(data:NewsData){
-        viewModelScope.launch {
             repo.insertData(context,data)
-        }
+
     }
     fun deleteNews(data:NewsData){
-        viewModelScope.launch {
+
             repo.deleteNewsArtcle(context,data)
-        }
+
     }
     fun getNewsFromDatabase(): LiveData<List<NewsData>> {
         return repo.getNewsDataFromDatabase(context)

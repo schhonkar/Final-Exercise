@@ -36,9 +36,17 @@ class NewsDetailFragment : Fragment() {
         Glide.with(this).load(article.image).into(detailImageview)
 
         viewmodel = ViewModelProvider(this).get(NewsViewModel::class.java)
-        addtofav.setOnClickListener {
-            viewmodel.insertNews(article)
-            Snackbar.make(view,"Article saved successfully",Snackbar.LENGTH_SHORT).show()
+        if(article.id != 0){
+            addtofav.setOnClickListener {
+                viewmodel.deleteNews(article)
+                Snackbar.make(view,"Article deleted successfully",Snackbar.LENGTH_SHORT).show()
+            }
+        }
+        else {
+            addtofav.setOnClickListener {
+                viewmodel.insertNews(article)
+                Snackbar.make(view, "Article saved successfully", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 

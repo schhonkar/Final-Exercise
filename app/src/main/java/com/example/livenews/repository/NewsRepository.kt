@@ -54,7 +54,7 @@ class NewsRepository() {
            return database.newsDao().getAllData()
     }
 
-    suspend fun deleteNewsArtcle(context: Context, data:NewsData){
+     fun deleteNewsArtcle(context: Context, data:NewsData){
         val database =  NewsDatabaseBuilder().getInstance(context)
         Executors.newSingleThreadExecutor().execute {
             database.newsDao().deleteNews(data)

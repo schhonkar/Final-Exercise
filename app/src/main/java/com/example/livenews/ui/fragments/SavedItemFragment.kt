@@ -47,29 +47,8 @@ class SavedItemFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUi()
-
-        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
-                ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-                ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return true
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                val article = adapter.data[position]
-                viewmodel.deleteNews(article)
-                view?.let { Snackbar.make(it, "Deleted Successfully", Snackbar.LENGTH_SHORT).show() }
-            }
-
-        }
-
-        ItemTouchHelper(itemTouchHelperCallback).apply {
-            attachToRecyclerView(rvNewsListSave)
-        }
-
     }
+
     fun setUi(){
         viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)
         viewmodel.getNewsFromDatabase().observe(viewLifecycleOwner, Observer {articles ->
@@ -80,9 +59,4 @@ class SavedItemFragment : Fragment() {
             }
         })
     }
-
-
-
-
-
 }

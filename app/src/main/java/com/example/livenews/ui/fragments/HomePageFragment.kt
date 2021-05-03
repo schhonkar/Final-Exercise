@@ -1,12 +1,14 @@
 package com.example.livenews.ui.fragments
 
 import android.app.Application
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +20,7 @@ import com.example.livenews.adapter.AdapterHome
 import com.example.livenews.api.ApiClint
 import com.example.livenews.model.NewsData
 import com.example.livenews.model.ResponseDataModel
+import com.example.livenews.ui.MainActivity
 import com.example.livenews.viewModel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_home_page.*
 import retrofit2.Call
@@ -30,6 +33,7 @@ class HomePageFragment : Fragment() {
     lateinit var viewmodel:NewsViewModel
     val args :HomePageFragmentArgs by navArgs()
     lateinit var category:String
+    val mainActivity = MainActivity()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +48,20 @@ class HomePageFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if(mainActivity.isOnline(activity as AppCompatActivity)){
+            setUi()
+        }
+        else{
+            internetCheckText.visibility = View.VISIBLE
+            progressBar.visibility = View.INVISIBLE
+        }
+
+    }
+
+    fun setUi(){
         progressBar.visibility = View.VISIBLE
         viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)
         category = args.category
@@ -58,7 +74,5 @@ class HomePageFragment : Fragment() {
             }
         })
     }
-
-
 
 }

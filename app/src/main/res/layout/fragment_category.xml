@@ -7,6 +7,15 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search News by Category"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textStyle=""
+        />
     <Button
         android:id="@+id/ctSport"
         android:layout_width="wrap_content"

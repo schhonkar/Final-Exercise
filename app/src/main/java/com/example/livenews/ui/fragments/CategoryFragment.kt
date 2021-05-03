@@ -25,6 +25,10 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /**
+         * Navigation to HomePage Fragment to get the data using category
+         */
         ctSport.setOnClickListener {
             categary = "sports"
             val action = CategoryFragmentDirections.actionCategoryFragmentToHomePageFragment(

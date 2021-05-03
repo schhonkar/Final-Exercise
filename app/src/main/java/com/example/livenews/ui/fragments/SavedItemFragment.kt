@@ -49,6 +49,10 @@ class SavedItemFragment : Fragment() {
         setUi()
     }
 
+
+    /**
+     * To set the UI
+     */
     fun setUi(){
         viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)
         viewmodel.getNewsFromDatabase().observe(viewLifecycleOwner, Observer {articles ->

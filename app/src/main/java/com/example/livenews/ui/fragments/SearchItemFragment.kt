@@ -48,6 +48,9 @@ class SearchItemFragment : Fragment() {
         searchButton.setOnClickListener {
             if (searchEditText.text.isNotEmpty()) {
                 val keyword = searchEditText.text.toString()
+                /**
+                 * checking if the internet is active or not
+                 */
                 if(mainActivity.isOnline(activity as AppCompatActivity)){
                     setUi(keyword)
                 }
@@ -62,7 +65,12 @@ class SearchItemFragment : Fragment() {
     }
 
 
-        fun setUi(keyword:String){
+    /**
+     *to set the UI
+     * it need a keyword to search that comes from the edittext
+     */
+
+    fun setUi(keyword:String){
             progressBar1.visibility = View.VISIBLE
             viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)
             viewmodel.getNewsData(keyword,"general")

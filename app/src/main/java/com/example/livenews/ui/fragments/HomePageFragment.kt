@@ -32,7 +32,9 @@ class HomePageFragment : Fragment() {
     lateinit var adapter: AdapterHome
     lateinit var viewmodel:NewsViewModel
     val args :HomePageFragmentArgs by navArgs()
+    //Optional category to get news by Category
     lateinit var category:String
+    //Making instance to get the connectivity method
     val mainActivity = MainActivity()
 
     override fun onCreateView(
@@ -61,6 +63,9 @@ class HomePageFragment : Fragment() {
 
     }
 
+    /**
+     *To set up the UI of HomePage Fragment
+     */
     fun setUi(){
         progressBar.visibility = View.VISIBLE
         viewmodel = ViewModelProvider(this).get(NewsViewModel(activity!!.application)::class.java)

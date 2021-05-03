@@ -36,12 +36,19 @@ class NewsDetailFragment : Fragment() {
         Glide.with(this).load(article.image).into(detailImageview)
 
         viewmodel = ViewModelProvider(this).get(NewsViewModel::class.java)
+
+        /**
+         * Checing if data is coming from database
+         */
         if(article.id != 0){
             addtofav.setOnClickListener {
                 viewmodel.deleteNews(article)
                 Snackbar.make(view,"Article deleted successfully",Snackbar.LENGTH_SHORT).show()
             }
         }
+        /**
+         *Checking if data is coming from API
+         */
         else {
             addtofav.setOnClickListener {
                 viewmodel.insertNews(article)

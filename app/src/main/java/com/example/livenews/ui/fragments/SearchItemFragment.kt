@@ -40,8 +40,6 @@ class SearchItemFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search_item, container, false)
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         progressBar1.visibility = View.INVISIBLE

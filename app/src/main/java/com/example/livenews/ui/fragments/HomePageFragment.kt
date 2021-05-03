@@ -50,7 +50,6 @@ class HomePageFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if(mainActivity.isOnline(activity as AppCompatActivity)){
